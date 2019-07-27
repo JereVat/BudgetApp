@@ -11,15 +11,18 @@ import requests
 import datetime as dt
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from app.calculations import calculate
 
 def main(request):
-    template = 'index.html'
+    index = 'index.html'
 
-    if request.method == 'POST':
-        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
-        if user is not None:
-            login(request, user)
-            project_filter = "Kaikki projektit - 0"
-            return render(request, template)
-        else:
-            return HttpResponseRedirect('/')
+
+    if request.method == 'GET':
+        result = 0
+        return render(request, index, {'result':result})
+
+    elif request.method == 'POST':
+        result = calculate(request.POST.get('netIncome'), request.POST.get('savingTime'),
+                           request.POST.get('target_wealth'),request.POST.get('beginningWealth'),
+                           request.POST.get('targetInterest'))
+        return render(request, index, {'result':result})

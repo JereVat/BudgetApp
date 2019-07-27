@@ -1,73 +1,79 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="stylesheet.css" />
-    <script type="text/javascript" src="js/javascript.js"></script>
-    <title>
-      Budget
-    </title>
+      <meta charset="utf-8" />
+      <script type="text/javascript" src="js/javascript.js"></script>
+      <link href="{% static 'css/stylesheet.css?v=1.0.0' %}" type="text/css" rel="stylesheet"/>
+      <title>
+          Budget
+      </title>
   </head>
   <body>
 <!-- everything inside this container div -->
   <div id="container">
 <!-- our header -->
-    <div id="custom-header">
-      <div id=app-name>
-        <h2 id="header">BUDGET APP</h2>
-      </div>
-      <div id="slogan">
-        <h1 id="intro">Yksinkertainen sovellus <br /> <span class="color-text"> tulevaisuuden varallisuuden rakentamiseksi. </span></h1></div>
-
+      <div id="section1">
+          <div id="custom-header">
+          <div id=app-name>
+              <h2 id="header">BUDGET APP</h2>
+          </div>
+          <div id="slogan">
+              <h1 id="intro">Yksinkertainen sovellus <br /> <span class="color-text"> tulevaisuuden varallisuuden rakentamiseksi. </span></h1></div>
+          </div>
+          <div id="navigationWrap">
+              <div id="navigation">
+                  <a href="#section2"><button id="toCalculator"> Laskimeen </button> </a>
+              </div>
+          </div>
       </div>
 
 <!-- Actual page start -->
-    <div id="custom-body">
-        <form id="myForm">
-          <div class="input">
-              <p>
-                Nettotulot (e/kk):
-              </p>
-              <input type="text" id="netIncome" required="required" />
+      <div id="section2">
+          <div id="custom-body">
+              <form id="myForm" action="/#section2" method="post">
+              {% csrf_token %}
+                  <div class="input">
+                      <p>
+                        Nettotulot (e/kk):
+                      </p>
+                      <input type="number" id="netIncome" name="netIncome" required="required" />
+                  </div>
+                  <div class="input">
+                      <p>
+                        Säästöajan pituus vuosina:
+                      </p>
+                      <input type="number" id="savingTime" name="savingTime" required="required"/>
+                  </div>
+                  <div class="input">
+                      <p>
+                        Tavoitevarallisuus:
+                      </p>
+                      <input type="number" id="targetWealth" name="targetWealth" required="required"/>
+                  </div>
+                  <div class="input">
+                      <p>
+                        Alkuvarallisuus:
+                      </p>
+                      <input type="number" id="beginningWealth" name="beginningWealth" required="required"/>
+                  </div>
+                  <div class="input">
+                      <p>
+                        Vuosittainen korkotavoite (%):
+                      </p>
+                      <input type="number" id="targetInterest" name="targetInterest" required="required"/>
+                  </div>
+                  <div class="button">
+                    <input id="submit" class="waves-effect btn indigo" type="submit" name="Submit" value="Laske">
+                  </div>
+              </form>
+              <div id="reqSavings">
+                    {{ result }}
+              </div>
           </div>
-          <div class="input">
-              <p>
-                Säästöajan pituus vuosina:
-              </p>
-              <input type="number" id="savingTime" required="required"/>
-          </div>
-          <div class="input">
-              <p>
-                Tavoitevarallisuus:
-              </p>
-              <input type="number" id="targetWealth" required="required"/>
-          </div>
-          <div class="input">
-              <p>
-                Alkuvarallisuus:
-              </p>
-              <input type="number" id="beginningWealth" required="required"/>
-          </div>
-          <div class="input">
-              <p>
-                Vuosittainen korkotavoite:
-              </p>
-              <input type="number" id="targetInterest" required="required"/>
-              <p>
-                %
-              </p>
-          </div>
-          <div class="button">
-            <button type="submit" onclick="calculate(document.getElementById('netIncome').value, document.getElementById('savingTime').value, document.getElementById('targetWealth').value), document.getElementById('beginningWealth').value, document.getElementById('targetInterest').value"> Laske </button>
-          </div>
-        </form>
-
-        <div id="reqSavings">
-
-        </div>
-        </div>
-    </div>
-<!-- page end - write nothing below this comment -->
+      </div>
   </div>
-  </body>
+<!-- page end - write nothing below this comment -->
+</body>
 </html>

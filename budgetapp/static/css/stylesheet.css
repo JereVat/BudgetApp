@@ -1,3 +1,4 @@
+
 body {
   background-image: url(images/background.jpg);
   background-repeat:no-repeat;
@@ -24,14 +25,14 @@ body {
 }
 
 #header {
-  color: white;
+  color: #4C423F;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size: 210%;
-  font-weight: 900;
+  font-weight: 1200;
 }
 
 #slogan {
-  color: white;
+  color: #33ff33;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size: 110%;
 }
@@ -48,4 +49,15 @@ body {
 .color-text {
   font-weight: 700;
   color: #4C423F;
+}
+
+#navigationWrap {
+    margin-top: -25%;
+    margin-left: 40%;
+    margin-bottom: 20%;
+}
+
+#toCalculator {
+    height: 100px;
+    width: 30%;
 }
