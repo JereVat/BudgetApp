@@ -1,0 +1,51 @@
+body {
+  background-image: url(images/background.jpg);
+  background-repeat:no-repeat;
+  background-color: rgba(211, 211, 211, 0.3);
+  background-size: 100% 50%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#custom-header, #custom-body {
+  height: calc(100vh);
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#custom-header {
+
+}
+
+#app-name {
+  margin-top: 10%;
+}
+
+#header {
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 210%;
+  font-weight: 900;
+}
+
+#slogan {
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 110%;
+}
+
+#intro {
+  text-align: center;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  width: 80%;
+}
+
+.color-text {
+  font-weight: 700;
+  color: #4C423F;
+}
