@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
       <meta charset="utf-8" />
-      <script type="text/javascript" src="js/javascript.js"></script>
+      <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
       <link href="{% static 'css/stylesheet.css?v=1.0.0' %}" type="text/css" rel="stylesheet"/>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <title>
@@ -17,15 +17,19 @@
 <!-- our header -->
       <div id="section1" class="section-child">
           <div id="custom-header">
-          <div id=app-name>
-              <h2 id="header">BUDGET APP</h2>
-          </div>
-          <div id="slogan">
-              <h1 id="intro">Yksinkertainen sovellus <br /> <span class="color-text"> tulevaisuuden varallisuuden rakentamiseksi. </span></h1></div>
+              <div id=app-name>
+                  <h1 id="header">Budjetointisovellus</h1>
+              </div>
+              <div id="slogan">
+                  <h2 id="intro">Yksinkertainen sovellus <br/> <span class="color-text"> tulevaisuuden varallisuuden rakentamiseksi. </span>
+                  </h2>
+              </div>
           </div>
           <div id="navigationWrap">
               <div id="navigation">
-                  <a href="#section2"><button id="toCalculator"> Laskimeen </button> </a>
+                  <a href="#section2">
+                      <button id="toCalculator" class="btn-floating btn-large amber darken-3 pulse"> Laskuriin </button>
+                  </a>
               </div>
           </div>
       </div>
@@ -84,14 +88,14 @@
                           </div>
                           <div id="submit_container">
                               <div class="button">
-                                  <input id="submit" class="waves-effect btn indigo" type="submit" name="Submit"
+                                  <input id="submit" class="waves-effect btn amber darken-3" type="submit" name="Submit"
                                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                          maxlength="10"
                                          value="Laske">
                               </div>
                           </div>
                           <div id="reqSavings">
-                              <h2> {{ result }} </h2>
+                              <h4> {{ result }}     </h4>
                           </div>
                       </form>
                   </div>

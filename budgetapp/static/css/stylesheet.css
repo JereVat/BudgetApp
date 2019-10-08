@@ -4,7 +4,7 @@ html {
 
 body {
     scroll-snap-type: y mandatory;
-    background-image: url(images/background.jpg);
+    background-image: url(img/luxuryoffice_background.jpg);
     background-repeat:no-repeat;
     background-color: rgba(211, 211, 211, 0.3);
     background-size: 100% 50%;
@@ -20,43 +20,36 @@ body {
   margin-right: 20%;
 }
 
-#custom-header {
-
-}
-
-#app-name {
-  margin-top: 10%;
-}
-
 #header {
-  color: #4C423F;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 210%;
-  font-weight: 1200;
+    padding-top: 100px;
+    padding-left: 29%;
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 310%;
 }
 
 #slogan {
-  color: #33ff33;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 110%;
+    color: #ff8f00;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 110%;
+}
+
+.color-text {
+  font-weight: 700;
+  color: #ffffff;
 }
 
 #intro {
   text-align: center;
-  top: 50vh;
+  top: 45vh;
   left: 50%;
   transform: translate(-50%,-50%);
   position: absolute;
   width: 80%;
 }
 
-.color-text {
-  font-weight: 700;
-  color: #4C423F;
-}
-
 #navigationWrap {
-    margin-top: -25%;
+    margin-top: -17%;
     margin-left: 40%;
     margin-bottom: 20%;
 }
@@ -64,6 +57,7 @@ body {
 #toCalculator {
     height: 100px;
     width: 30%;
+    border-radius: 5px;
 }
 
 #container_body {
@@ -82,13 +76,17 @@ body {
 }
 
 #submit_container {
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: left;
+}
+
+#submit {
+    width: 100%;
 }
 
 #reqSavings {
     text-align: left;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .input_field {
@@ -100,5 +98,21 @@ body {
 }
 
 .section-child {
-    scroll-snap-align: start;
+    width: 100%;
+}
+
+#section1 {
+    margin-top: -42px;
+    height: 100vh;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+/* label focus color */
+.input input[type=number]:focus + label {
+    color: #ff8f00 !important;
+}
+/* label underline focus color */
+.input input[type=number]:focus {
+    border-bottom: 1px solid #ff8f00 !important;
+    box-shadow: 0 1px 0 0 #ff8f00 !important;
 }
