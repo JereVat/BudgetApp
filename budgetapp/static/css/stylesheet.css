@@ -1,9 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-  background-image: url(images/background.jpg);
-  background-repeat:no-repeat;
-  background-color: rgba(211, 211, 211, 0.3);
-  background-size: 100% 50%;
+    scroll-snap-type: y mandatory;
+    background-image: url(images/background.jpg);
+    background-repeat:no-repeat;
+    background-color: rgba(211, 211, 211, 0.3);
+    background-size: 100% 50%;
 }
 
 ::-webkit-scrollbar {
@@ -60,4 +64,41 @@ body {
 #toCalculator {
     height: 100px;
     width: 30%;
+}
+
+#container_body {
+    height: 100%;
+    background-color: #ffffff;
+    padding-left: 12%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 30% 32% 30%;
+    grid-template-columns: 30% 30%;
+    grid-gap: 25%;
+}
+
+.halfs {
+    margin-top: 15%;
+}
+
+#submit_container {
+    margin-top: 50px;
+    text-align: left;
+}
+
+#reqSavings {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.input_field {
+    text-align: right;
+}
+
+.input p {
+    margin-bottom: -30px;
+}
+
+.section-child {
+    scroll-snap-align: start;
 }

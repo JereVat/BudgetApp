@@ -6,6 +6,7 @@
       <meta charset="utf-8" />
       <script type="text/javascript" src="js/javascript.js"></script>
       <link href="{% static 'css/stylesheet.css?v=1.0.0' %}" type="text/css" rel="stylesheet"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <title>
           Budget
       </title>
@@ -14,7 +15,7 @@
 <!-- everything inside this container div -->
   <div id="container">
 <!-- our header -->
-      <div id="section1">
+      <div id="section1" class="section-child">
           <div id="custom-header">
           <div id=app-name>
               <h2 id="header">BUDGET APP</h2>
@@ -30,47 +31,145 @@
       </div>
 
 <!-- Actual page start -->
-      <div id="section2">
+      <div id="section2" class="section-child">
           <div id="custom-body">
-              <form id="myForm" action="/#section2" method="post">
-              {% csrf_token %}
-                  <div class="input">
-                      <p>
-                        Nettotulot (e/kk):
-                      </p>
-                      <input type="number" id="netIncome" name="netIncome" required="required" />
+                  <div id="container_body">
+                  <div class="halfs" id="half_1">
+                      <form id="myForm" action="/#section2" method="post">
+                          {% csrf_token %}
+                          <div class="input">
+                              <p>
+                                  Nettotulot (e/kk):
+                              </p>
+                              <input type="number" class="input_field" id="netIncome" name="netIncome"
+                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                     maxlength="10"
+                                     required="required"/>
+                          </div>
+                          <div class="input">
+                              <p>
+                                  Säästöajan pituus vuosina:
+                              </p>
+                              <input type="number" class="input_field" id="savingTime" name="savingTime"
+                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                     maxlength="10"
+                                     required="required"/>
+                          </div>
+                          <div class="input">
+                              <p>
+                                  Tavoitevarallisuus:
+                              </p>
+                              <input type="number" class="input_field" id="targetWealth" name="targetWealth"
+                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                     maxlength="10"
+                                     required="required"/>
+                          </div>
+                          <div class="input">
+                              <p>
+                                  Alkuvarallisuus:
+                              </p>
+                              <input type="number" class="input_field" id="beginningWealth" name="beginningWealth"
+                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                     maxlength="10"
+                                     required="required"/>
+                          </div>
+                          <div class="input">
+                              <p>
+                                  Vuosittainen korkotavoite (%):
+                              </p>
+                              <input type="number" class="input_field" id="targetInterest" name="targetInterest"
+                                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                     maxlength="10"
+                                     required="required"/>
+                          </div>
+                          <div id="submit_container">
+                              <div class="button">
+                                  <input id="submit" class="waves-effect btn indigo" type="submit" name="Submit"
+                                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                         maxlength="10"
+                                         value="Laske">
+                              </div>
+                          </div>
+                          <div id="reqSavings">
+                              <h2> {{ result }} </h2>
+                          </div>
+                      </form>
                   </div>
-                  <div class="input">
-                      <p>
-                        Säästöajan pituus vuosina:
-                      </p>
-                      <input type="number" id="savingTime" name="savingTime" required="required"/>
+                  <div class="halfs" id="half_2">
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10" />
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
+                      <div class="input">
+                          <p>
+                              Asuminen:
+                          </p>
+                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10"/>
+                      </div>
                   </div>
-                  <div class="input">
-                      <p>
-                        Tavoitevarallisuus:
-                      </p>
-                      <input type="number" id="targetWealth" name="targetWealth" required="required"/>
                   </div>
-                  <div class="input">
-                      <p>
-                        Alkuvarallisuus:
-                      </p>
-                      <input type="number" id="beginningWealth" name="beginningWealth" required="required"/>
-                  </div>
-                  <div class="input">
-                      <p>
-                        Vuosittainen korkotavoite (%):
-                      </p>
-                      <input type="number" id="targetInterest" name="targetInterest" required="required"/>
-                  </div>
-                  <div class="button">
-                    <input id="submit" class="waves-effect btn indigo" type="submit" name="Submit" value="Laske">
-                  </div>
-              </form>
-              <div id="reqSavings">
-                    {{ result }}
-              </div>
           </div>
       </div>
   </div>

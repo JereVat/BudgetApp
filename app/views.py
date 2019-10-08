@@ -23,6 +23,6 @@ def main(request):
 
     elif request.method == 'POST':
         result = calculate(request.POST.get('netIncome'), request.POST.get('savingTime'),
-                           request.POST.get('target_wealth'),request.POST.get('beginningWealth'),
+                           request.POST.get('targetWealth'),request.POST.get('beginningWealth'),
                            request.POST.get('targetInterest'))
         return render(request, index, {'result':result})
