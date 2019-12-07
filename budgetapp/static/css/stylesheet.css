@@ -4,7 +4,7 @@ html {
 
 body {
     scroll-snap-type: y mandatory;
-    background-image: url(img/luxuryoffice_background.jpg);
+    background-image: url(img/backkis.jpg);
     background-repeat:no-repeat;
     background-color: rgba(211, 211, 211, 0.3);
     background-size: 100% 50%;
@@ -12,6 +12,42 @@ body {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.tooltip-icon {
+  font-weight: 700;
+    cursor: help;
+    width: 100%;
+    text-align: center;
+    background-color: #f4f8f9;
+    color: black;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    line-height: 2em;
+    margin-left: 0.6em;
+}
+
+.tooltip {
+  position: absolute;
+      z-index: 1;
+      transition: 0.3s all;
+      padding: 1em 1.3em;
+      margin-top: 1.3em;
+      font-size: 0.9rem;
+      color: white;
+      background-color: #5f5f5f;
+      font-weight: 400;
+      pointer-events: none;
+      border-radius: 0.3em;
+      text-align: left;
+      line-height: 1.6;
+      opacity:0;
+}
+
+.tooltip-icon:hover .tooltip {
+  opacity: 0.8;
 }
 
 #custom-header, #custom-body {
@@ -22,7 +58,7 @@ body {
 
 #header {
     padding-top: 100px;
-    padding-left: 29%;
+    margin-left: -25%;
     color: #ffffff;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 310%;
@@ -81,12 +117,13 @@ body {
 }
 
 #submit {
+    margin-top: 30px;
     width: 100%;
 }
 
-#reqSavings {
-    text-align: left;
-    margin-top: 10px;
+.result-field {
+    text-align: center;
+    margin-top: 60px;
 }
 
 .input_field {
@@ -112,7 +149,22 @@ body {
     color: #ff8f00 !important;
 }
 /* label underline focus color */
-.input input[type=number]:focus {
+.input input[type=number
+]:focus {
     border-bottom: 1px solid #ff8f00 !important;
     box-shadow: 0 1px 0 0 #ff8f00 !important;
+}
+
+#overUnder, #sumResults {
+    margin-top: 50px;
+}
+
+#overUnder input[type=number], #sumResults input[type=number] {
+    border-bottom: 2px solid #ff8f00 !important;
+}
+
+#custom-body {
+    -webkit-box-shadow: 0px 9px 5px 5px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 9px 5px 5px rgba(0,0,0,0.1);
+    box-shadow: 0px 9px 5px 5px rgba(0,0,0,0.1);
 }

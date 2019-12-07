@@ -4,6 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
       <meta charset="utf-8" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
       <link href="{% static 'css/stylesheet.css?v=1.0.0' %}" type="text/css" rel="stylesheet"/>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -11,14 +12,14 @@
           Budget
       </title>
   </head>
-  <body>
+  <body onload="configureVars()">
 <!-- everything inside this container div -->
   <div id="container">
 <!-- our header -->
       <div id="section1" class="section-child">
           <div id="custom-header">
               <div id=app-name>
-                  <h1 id="header">Budjetointisovellus</h1>
+                  <h1 id="header">Design.</h1>
               </div>
               <div id="slogan">
                   <h2 id="intro">Yksinkertainen sovellus <br/> <span class="color-text"> tulevaisuuden varallisuuden rakentamiseksi. </span>
@@ -47,7 +48,7 @@
                               </p>
                               <input type="number" class="input_field" id="netIncome" name="netIncome"
                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                     maxlength="10"
+                                     maxlength="10" value="{{ netIncome }}" onClick="this.select();"
                                      required="required"/>
                           </div>
                           <div class="input">
@@ -56,7 +57,7 @@
                               </p>
                               <input type="number" class="input_field" id="savingTime" name="savingTime"
                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                     maxlength="10"
+                                     maxlength="10" value="{{ savingTime }}" onClick="this.select();"
                                      required="required"/>
                           </div>
                           <div class="input">
@@ -65,7 +66,7 @@
                               </p>
                               <input type="number" class="input_field" id="targetWealth" name="targetWealth"
                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                     maxlength="10"
+                                     maxlength="10" value="{{ targetWealth }}" onClick="this.select();"
                                      required="required"/>
                           </div>
                           <div class="input">
@@ -74,7 +75,7 @@
                               </p>
                               <input type="number" class="input_field" id="beginningWealth" name="beginningWealth"
                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                     maxlength="10"
+                                     maxlength="10" value="{{ beginningWealth }}" onClick="this.select();"
                                      required="required"/>
                           </div>
                           <div class="input">
@@ -83,7 +84,7 @@
                               </p>
                               <input type="number" class="input_field" id="targetInterest" name="targetInterest"
                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                     maxlength="10"
+                                     maxlength="10" value="{{ targetInterest }}" onClick="this.select();"
                                      required="required"/>
                           </div>
                           <div id="submit_container">
@@ -94,83 +95,105 @@
                                          value="Laske">
                               </div>
                           </div>
-                          <div id="reqSavings">
-                              <h4> {{ result }}     </h4>
+                          <div id="reqSavings" class="result-field">
+                              <p>
+                                  Kuukausittainen säästö-/sijoitussumma
+                              </p>
+                              <div>
+                                  <h4 style="text-align: center;" id="result-h4"> {{ result }}     </h4>
+                              </div>
                           </div>
                       </form>
                   </div>
                   <div class="halfs" id="half_2">
                       <div class="input">
-                          <p>
-                              Asuminen:
-                          </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          Asuminen:
+                          <div class="tooltip-icon"> ?
+		                        <div class="tooltip">Laske tähän asumiskustannukset: <br>- Vuokra <br>-Hoitovastike <br>-Yhtiövelka <br>-Lainanlyhennys</div>
+                          </div>
+                          <input type="number" class="input_field" id="living" name="living"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Ruoka:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="food" name="food"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Autovero:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="car" name="car"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Vakuutukset:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="insurances" name="insurances"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Puhelinliittymä:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="mobileSubscription" name="mobileSubscription"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Sähkö:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="electricity" name="electricity"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Internet:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="internet" name="internet"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10" />
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Harrastukset:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="hobbies" name="hobbies"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
                       </div>
                       <div class="input">
                           <p>
-                              Asuminen:
+                              Muut:
                           </p>
-                          <input type="number" class="input_field" id="houseExpenses" name="houseExpenses"
+                          <input type="number" class="input_field" id="other" name="other"
                                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                 maxlength="10"/>
+                                 maxlength="10" onClick="this.select();" value="0" onChange="reCalculate()"/>
+                      </div>
+                      <div class="input" id="sumResults">
+                          <p>
+                              Säästö-/Sijoitussumma:
+                          </p>
+                          <input type="number" class="input_field" id="totalSum" name="totalSum"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10" value="{{ result }}" readonly/>
+                      </div>
+                      <div class="input" id="overUnder">
+                          <p>
+                              Kk rahavirran yli-/alijäämä*:
+                          </p>
+                          <input type="number" class="input_field" id="totalOverUnder" name="totalSum"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 maxlength="10" value="0" readonly/>
                       </div>
                   </div>
                   </div>
